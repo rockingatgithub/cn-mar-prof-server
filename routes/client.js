@@ -34,7 +34,7 @@ router.post('/signin', async (req, res) => {
 
     try{
 
-        const client = await Client.findOne({email: req.body.email})
+        const client = await Client.findOne({email: req.body.email}).populate('food')
         const user = { email: client.email, id: client._id }
         const token = jwt.sign(user, 'my_key', { expiresIn: '2d' })
         if(client){

@@ -15,6 +15,14 @@ passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
         if (user) {
             return done(null, user);
         } else {
+            Customer.findOne({id: jwt_payload.id}, function(err, customer) {
+                if (err) {
+                    return done(err, false);
+                }
+                if (customer) {
+                    return done(null, customer);
+                }
+            })
             return done(null, false);
             // or you could create a new account
         }
