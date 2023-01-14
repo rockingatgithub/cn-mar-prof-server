@@ -1,5 +1,5 @@
 const express = require('express')
-const passport = require('passport')
+const passport = require('../config/passportGoogleStrategy')
 const router = express.Router()
 
 router.use('/client', require('./client')  )
@@ -21,6 +21,17 @@ router.get('/profile', passport.authenticate('jwt', {failureRedirect: '/login', 
         })
     }
 )
+
+router.get('/auth/google',
+  passport.authenticate('google', { scope:
+      [ 'email', 'profile' ] }
+));
+
+router.get( '/auth/google/callback',
+    passport.authenticate( 'google', {
+        successRedirect: '/auth/google/success',
+        failureRedirect: '/auth/google/failure'
+}));
 
 
 module.exports = router

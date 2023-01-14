@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-exports.sendEmail = () => {
+exports.sendEmail = (foodData) => {
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -13,8 +13,8 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
   from: '',
   to: '',
-  subject: 'Ordered a food',
-  text: 'Food is tasty!'
+  subject: `Your ${foodData.food} is ordered`,
+  text: `Food is tasty!`
 };
 
 transporter.sendMail(mailOptions, function(error, info){

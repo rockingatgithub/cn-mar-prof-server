@@ -52,9 +52,10 @@ router.get('/getFood', passport.authenticate('jwt', {failureRedirect: '/login', 
 
 } )
 
-router.get('/orderFood', passport.authenticate('jwt', {failureRedirect: '/login', session: false}) , async  (req, res) => {
+router.post('/orderFood', passport.authenticate('jwt', {failureRedirect: '/login', session: false}) , async  (req, res) => {
 
-    sendEmail();
+    console.log("req body", req.body)
+    sendEmail(req.body);
     return res.status(200).json({
         message: "Email sent successfully!"
     })
