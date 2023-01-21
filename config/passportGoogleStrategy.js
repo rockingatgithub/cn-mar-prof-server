@@ -3,8 +3,8 @@ const Customer = require('../models/customer');
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 passport.use(new GoogleStrategy({
-    clientID: "",
-    clientSecret: "",
+    clientID: "44918824988-cohh4f1c4035rqvb5s00hjnkvc0qmjqf.apps.googleusercontent.com",
+    clientSecret: "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",
     callbackURL: "http://localhost:8000/auth/google/callback",
     passReqToCallback   : true
   },
@@ -16,4 +16,4 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-module.exports = passport
+// module.exports = passport
